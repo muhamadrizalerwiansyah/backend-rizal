@@ -23,6 +23,6 @@ use Illuminate\Support\Facades\Route;
 Route::post('login-apps', [AppsController::class, 'login'])->name('login-apps');
 Route::get('employee-all', [AppsController::class, 'getAllEmployee'])->name('employee-all');
 Route::post('superior-insert', [AppsController::class, 'create_superior'])->name('superior-insert');
-Route::put('superior-update/{id}', [AppsController::class, 'update_superior'])->name('superior-update');
-Route::delete('superior-delete/{id}', [AppsController::class, 'delete_superior'])->name('superior-delete');
+Route::patch('superior-update/{id}', [AppsController::class, 'update_superior'])->name('superior-update');
+Route::delete('employee-delete/{id}', [AppsController::class, 'delete'])->name('employee-delete');
 Route::post('member-insert', [AppsController::class, 'create_member'])->name('member-insert');

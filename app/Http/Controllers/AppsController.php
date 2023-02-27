@@ -43,7 +43,7 @@ class AppsController extends Controller
             } else {
                 $rm_manager =   $request->rm_manager;
             }
-            Employee::create([
+            $data =  Employee::create([
                 'id' =>  Uuid::uuid4(),
                 'rm_branch_id' => $request->rm_branch,
                 'rm_rep_id' =>  $request->rm_rep,
@@ -51,9 +51,9 @@ class AppsController extends Controller
                 'rm_current_position' =>  $request->rm_current_position,
                 'rm_manager_id' => $rm_manager,
             ]);
-            return response()->json(['status' => true, 'message' => 'Success'], 200);
+            return response()->json(['status' => true, 'data' => $data], 200);
         } catch (Exception $e) {
-            return response()->json(['status' => false, 'message' => 'failed'], 400);
+            return response()->json(['status' => false, 'data' => 'failed'], 400);
         }
     }
     public function update_superior($id, Request $request)
@@ -75,13 +75,13 @@ class AppsController extends Controller
             $employee->rm_manager_id = $rm_manager;
             $employee->save();
             DB::commit();
-            return response()->json(['status' => true, 'message' => 'Success'], 200);
+            return response()->json(['status' => true, 'data' => $employee], 200);
         } catch (Exception $e) {
-            return response()->json(['status' => false, 'message' => 'failed'], 400);
+            return response()->json(['status' => false, 'data' => 'failed'], 400);
         }
     }
 
-    public function delete_superior($id)
+    public function delete($id)
     {
         try {
             Employee::destroy($id);
