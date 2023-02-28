@@ -26,3 +26,4 @@ Route::post('superior-insert', [AppsController::class, 'create_superior'])->name
 Route::patch('superior-update/{id}', [AppsController::class, 'update_superior'])->name('superior-update');
 Route::delete('employee-delete/{id}', [AppsController::class, 'delete'])->name('employee-delete');
 Route::post('member-insert', [AppsController::class, 'create_member'])->name('member-insert');
+Route::get('employee-export', [AppsController::class, 'export'])->name('employee-export');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\EmployeeExport;
 use App\Models\Employee;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Uuid;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AppsController extends Controller
 {
@@ -107,5 +109,10 @@ class AppsController extends Controller
         } catch (Exception $e) {
             return response()->json(['status' => false, 'message' => 'failed'], 400);
         }
+    }
+
+    public function export()
+    {
+        return Excel::download(new EmployeeExport, 'users.xlsx');
     }
 }
